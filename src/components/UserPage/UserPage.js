@@ -10,7 +10,10 @@ const UserPage = (props) => (
     <h1 id="welcome">
       Welcome, { props.user.username }!
     </h1>
+    <p>These are your props: {JSON.stringify(props)}</p>
     <p>Your ID is: {props.user.id}</p>
+    <p>This is the information you have on file: <br />
+      </p>
     <LogOutButton className="log-in" />
   </div>
 );
@@ -18,7 +21,7 @@ const UserPage = (props) => (
 // Instead of taking everything from state, we just want the user info.
 // if you wanted you could write this code like this:
 // const mapStateToProps = ({user}) => ({ user });
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user,
 });
 
