@@ -3,7 +3,7 @@ const dataReducer = (state = {}, action) => {
         case 'SET_DATA':
             console.log(action.payload);
             return action.payload;
-        case 'UNSET_USER':
+        case 'UNSET_DATA':
             return {};
         default:
             return state;

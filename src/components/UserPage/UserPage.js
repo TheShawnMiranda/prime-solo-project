@@ -13,28 +13,29 @@ const UserPage = (props) => (
     </h1>
     <p>Your ID is: {props.user.id}</p>
     <h5>This is the information you have on file: </h5>
-    <ul> Donor
-      <li>Full Name: {props.data.id}</li>
-      <li>Blood Type: </li>
-      <li>Height: </li>
-      <li>Weight: </li>
-      <li>Date of Birth: </li>
-      <li>Organ to Donate: </li>
-    </ul>
-    <ul> Recipient
-      <li>Full Name: </li>
-      <li>Blood Type: </li>
-      <li>Height: </li>
-      <li>Weight: </li>
-      <li>Date of Birth: </li>
-      <li>Organ Needed: </li>
-    </ul>
-    {JSON.stringify(props.data)}
+    {props.data &&
+    <>
+      <ul> Donor
+        <li>Full Name: {props.data.donor_name}</li>
+        <li>Blood Type: {props.data.donor_blood_type}</li>
+        <li>Height: {props.data.donor_height}</li>
+        <li>Weight: {props.data.donor_weight}</li>
+        <li>Age: {props.data.donor_age}</li>
+        <li>Organ to Donate: {props.data.donor_organ}</li>
+      </ul>
+      <ul> Recipient
+        <li>Full Name: {props.data.recipient_name}</li>
+        <li>Blood Type: {props.data.recipient_blood_type}</li>
+        <li>Height: {props.data.recipient_height}</li>
+        <li>Weight: {props.data.recipient_weight}</li>
+        <li>Age: {props.data.recipient_age}</li>
+        <li>Organ Needed: {props.data.recipient_organ}</li>
+      </ul>
+      </>
+    }
     <LogOutButton className="log-in" />
   </div>
 );
-
-console.log()
 
 // Instead of taking everything from state, we just want the user info.
 // if you wanted you could write this code like this:

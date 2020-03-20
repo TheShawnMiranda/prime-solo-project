@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
     console.log(req.user.id)
     const queryText = `SELECT * FROM "data" WHERE id = $1`;
-    pool.query(queryText, [1])
+    pool.query(queryText, [req.user.id])
         .then((result) => res.send(result.rows))
         .catch((error) => console.log(error))
 });
