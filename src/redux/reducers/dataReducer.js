@@ -11,5 +11,5 @@ const dataReducer = (state = {}, action) => {
 };
 
 // data will be on the redux state at:
-// state.user
+// state.data
 export default dataReducer;
