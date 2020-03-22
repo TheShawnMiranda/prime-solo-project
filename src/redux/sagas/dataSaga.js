@@ -3,7 +3,6 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchData() {
-    console.log("Hello from generator function fetchData");
     try {
 
         const response = yield axios.get('/data');

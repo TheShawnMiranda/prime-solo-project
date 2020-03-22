@@ -8,7 +8,7 @@ function* registerUserData(action) {
     yield put({ type: 'CLEAR_REGISTRATION_ERROR' });
 
     // passes the username and password from the payload to the server
-    console.log(action.payload);
+    //console.log(action.payload);
     yield axios.post('/data', action.payload);
     
 

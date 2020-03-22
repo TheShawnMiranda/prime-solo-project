@@ -1,7 +1,7 @@
 const dataReducer = (state = {}, action) => {
     switch (action.type) {
         case 'SET_DATA':
-            console.log(action.payload);
+            //console.log(action.payload);
             return action.payload;
         case 'UNSET_DATA':
             return {};

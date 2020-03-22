@@ -6,7 +6,6 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
-    console.log(req.user.id)
     const queryText = `SELECT * FROM "data" WHERE id = $1`;
     pool.query(queryText, [req.user.id])
         .then((result) => res.send(result.rows))
@@ -17,7 +16,6 @@ router.get('/', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-    console.log(req.body);
     const queryText =  `INSERT INTO "data" ("donor_name", "donor_blood_type", "donor_height", "donor_weight", "donor_age", "donor_organ", "zip",
                         "recipient_name", "recipient_blood_type", "recipient_height", "recipient_weight", "recipient_age", "recipient_organ", "matched")
                         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14);`
@@ -28,19 +26,11 @@ router.post('/', (req, res) => {
         .catch((error) => console.log(error))
 });
 
-module.exports = router;
+router.delete('/:id', (req, res) => {
+    const queryText = `DELETE FROM "data" WHERE "id" = $1`
+    pool.query(queryText, [req.params.id])
+        .then((result) => res.sendStatus(200))
+        .catch((error) => console.log(error))
+});
 
-   
-    // donor_name: 'Andreas',
-    // donor_blood_type: 'B-',
-    // donor_height: '150',
-    // donor_weight: '150',
-    // donor_age: '21',
-    // donor_organ: 'Kidney',
-    // zip: '55102',
-    // recipient_name: 'Vithue',
-    // recipient_blood_type: 'B+',
-    // recipient_height: '150',
-    // recipient_weight: '150',
-    // recipient_age: '21',
-    // recipient_organ: 'Liver'
+module.exports = router;
