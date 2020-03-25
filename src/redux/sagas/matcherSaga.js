@@ -8,13 +8,15 @@ function* matcherFunction() {
         const response = yield axios.get('/data/all');
 
         let people = response.data;
-        let donorTypeNeeded = '';
+        let newDonorType = '';
+        let nextPerson = {};
 
         for (let person of people) {
-            donorTypeNeeded = person.recipient_blood_type;
-            recipientTypeNeeded = person.donor_blood_type;
-            for (nextPerson of people) {
-                if (nextPerson.)
+            nextPerson = people[people.indexOf(person) + 1]
+            if (checker(person, nextPerson)) {
+                newDonorType = nextPerson.donor_blood_type;
+            } else {
+                newDonorType = person.donor_blood_type;
             }
         }
 
@@ -23,6 +25,12 @@ function* matcherFunction() {
 
     } catch (error) {
         console.log('Matcher Failed', error);
+    }
+}
+
+function checker(object1, object2) {
+    if (object1.donor_blood_type === object2.recipient_blood_type) {
+        return true;
     }
 }
 
