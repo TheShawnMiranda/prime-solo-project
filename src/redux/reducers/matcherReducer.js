@@ -1,8 +1,8 @@
 const dataReducer = (state = {}, action) => {
     switch (action.type) {
-        case 'SET_DATA':
+        case 'SET_ALL_DATA':
             return action.payload;
-        case 'UNSET_DATA':
+        case 'UNSET_ALL_DATA':
             return {};
         default:
             return state;

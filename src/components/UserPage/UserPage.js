@@ -36,6 +36,7 @@ const UserPage = (props) => (
     }
     <LogOutButton className="log-in" />
     <DeleteButton className="delete" />
+    <button onClick = {() => props.dispatch({ type: 'RUN_MATCHER' })}>Run Matcher</button>
   </div>
 );
 

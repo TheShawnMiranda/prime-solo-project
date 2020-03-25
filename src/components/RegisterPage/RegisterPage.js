@@ -27,31 +27,32 @@ class RegisterPage extends Component {
       this.state.donor_height && this.state.donor_weight && this.state.donor_age && this.state.donor_organ &&
       this.state.zip && this.state.recipient_name && this.state.recipient_blood_type && this.state.recipient_height &&
       this.state.recipient_weight && this.state.recipient_age && this.state.recipient_organ) {
-        this.props.dispatch({
-          type: 'REGISTER',
-          payload: {
-            username: this.state.username,
-            password: this.state.password,
-          },
-        })
-        this.props.dispatch({
-          type: 'REGISTER_DATA',
-          payload: {
-            donor_name: this.state.donor_name,
-            donor_blood_type: this.state.donor_blood_type,
-            donor_height: this.state.donor_height,
-            donor_weight: this.state.donor_weight,
-            donor_age: this.state.donor_age,
-            donor_organ: this.state.donor_organ,
-            zip: this.state.zip,
-            recipient_name: this.state.recipient_name,
-            recipient_blood_type: this.state.recipient_blood_type,
-            recipient_height: this.state.recipient_height,
-            recipient_weight: this.state.recipient_weight,
-            recipient_age: this.state.recipient_age,
-            recipient_organ: this.state.recipient_organ
-          }
-        })
+      this.props.dispatch({
+        type: 'REGISTER',
+        payload: {
+          username: this.state.username,
+          password: this.state.password,
+        },
+      })
+      this.props.dispatch({
+        type: 'REGISTER_DATA',
+        payload: {
+          donor_name: this.state.donor_name,
+          donor_blood_type: this.state.donor_blood_type,
+          donor_height: this.state.donor_height,
+          donor_weight: this.state.donor_weight,
+          donor_age: this.state.donor_age,
+          donor_organ: this.state.donor_organ,
+          zip: this.state.zip,
+          recipient_name: this.state.recipient_name,
+          recipient_blood_type: this.state.recipient_blood_type,
+          recipient_height: this.state.recipient_height,
+          recipient_weight: this.state.recipient_weight,
+          recipient_age: this.state.recipient_age,
+          recipient_organ: this.state.recipient_organ
+        }
+      })
+      this.props.dispatch({ type: 'RUN_MATCHER' })
     } else {
       this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
     }

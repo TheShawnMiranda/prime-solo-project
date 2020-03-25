@@ -2,19 +2,20 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
 router.get('/', (req, res) => {
     const queryText = `SELECT * FROM "data" WHERE id = $1`;
     pool.query(queryText, [req.user.id])
         .then((result) => res.send(result.rows))
-        .catch((error) => console.log(error))
+        .catch((error) => console.log("Error in Router ", error))
 });
 
-/**
- * POST route template
- */
+router.get('/all', (req, res) => {
+    const queryText = `SELECT * FROM "data"`;
+    pool.query(queryText)
+        .then((result) => res.send(result.rows))
+        .catch((error) => console.log("Error in Router ", error))
+})
+
 router.post('/', (req, res) => {
     const queryText =  `INSERT INTO "data" ("donor_name", "donor_blood_type", "donor_height", "donor_weight", "donor_age", "donor_organ", "zip",
                         "recipient_name", "recipient_blood_type", "recipient_height", "recipient_weight", "recipient_age", "recipient_organ", "matched")
