@@ -12,31 +12,31 @@ const UserPage = (props) => (
     <h1 id="welcome">
       Welcome, {props.user.username}!
     </h1>
-    
+
     <h5>This is the information you have on file: </h5>
     {props.data &&
-    <>
-      <ul> Donor
+      <>
+        <ul> Donor
         <li>Full Name: {props.data.donor_name}</li>
-        <li>Blood Type: {props.data.donor_blood_type}</li>
-        <li>Height: {props.data.donor_height}</li>
-        <li>Weight: {props.data.donor_weight}</li>
-        <li>Age: {props.data.donor_age}</li>
-        <li>Organ to Donate: {props.data.donor_organ}</li>
-      </ul>
-      <ul> Recipient
+          <li>Blood Type: {props.data.donor_blood_type}</li>
+          <li>Height: {props.data.donor_height}</li>
+          <li>Weight: {props.data.donor_weight}</li>
+          <li>Age: {props.data.donor_age}</li>
+          <li>Organ to Donate: {props.data.donor_organ}</li>
+        </ul>
+        <ul> Recipient
         <li>Full Name: {props.data.recipient_name}</li>
-        <li>Blood Type: {props.data.recipient_blood_type}</li>
-        <li>Height: {props.data.recipient_height}</li>
-        <li>Weight: {props.data.recipient_weight}</li>
-        <li>Age: {props.data.recipient_age}</li>
-        <li>Organ Needed: {props.data.recipient_organ}</li>
-      </ul>
+          <li>Blood Type: {props.data.recipient_blood_type}</li>
+          <li>Height: {props.data.recipient_height}</li>
+          <li>Weight: {props.data.recipient_weight}</li>
+          <li>Age: {props.data.recipient_age}</li>
+          <li>Organ Needed: {props.data.recipient_organ}</li>
+        </ul>
       </>
     }
     <LogOutButton className="log-in" />
     <DeleteButton className="delete" />
-    <button onClick = {() => props.dispatch({ type: 'RUN_MATCHER' })}>Run Matcher</button>
+    <button onClick={() => props.dispatch({ type: 'RUN_MATCHER' })}>Run Matcher</button>
   </div>
 );
 
