@@ -6,6 +6,8 @@ import dataSaga from './dataSaga';
 import registerDataSaga from './registerDataSaga';
 import deleteFileSaga from './deleteFileSaga';
 import matcherSaga from './matcherSaga';
+import matchCatcher from './matchCatcher';
+import editData from './editDataSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -22,6 +24,8 @@ export default function* rootSaga() {
     dataSaga(),
     registerDataSaga(),
     deleteFileSaga(),
-    matcherSaga()
+    matcherSaga(),
+    matchCatcher(),
+    editData()
   ]);
 }

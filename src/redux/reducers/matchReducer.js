@@ -1,8 +1,8 @@
-const dataReducer = (state = {}, action) => {
+const matchReducer = (state = {}, action) => {
     switch (action.type) {
-        case 'SET_ALL_DATA':
+        case 'SET_MATCH':
             return action.payload;
-        case 'UNSET_ALL_DATA':
+        case 'UNSET_MATCH':
             return {};
         default:
             return state;
@@ -11,4 +11,4 @@ const dataReducer = (state = {}, action) => {
 
 // data will be on the redux state at:
 // state.data
-export default dataReducer;
+export default matchReducer;

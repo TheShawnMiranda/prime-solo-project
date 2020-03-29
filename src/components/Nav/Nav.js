@@ -20,7 +20,7 @@ const Nav = (props) => (
       {props.user.id && (
         <>
           <Link className="nav-link" to="/info">
-            Edit Account
+            Edit
           </Link>
           <LogOutButton className="nav-link"/>
         </>

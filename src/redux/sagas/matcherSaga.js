@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga/effects';
 
 let donorTypeArray = [];
 let recipientTypeArray = [];
@@ -10,24 +10,31 @@ function* matcherFunction() {
 
         const response = yield axios.get('/data/all');
 
-        yield put({ type: 'SET_ALL_DATA', payload: response.data });
-
         for (let pairObject of response.data) {
             donorTypeArray.push(pairObject.donor_blood_type);
             recipientTypeArray.push(pairObject.recipient_blood_type);
         }
 
-        console.log(donorTypeArray);
-        console.log(recipientTypeArray);
+        const donor_id_array = [];
+        const recipient_id_array = [];
 
         for (let bloodType of donorTypeArray) {
             if (recipientTypeArray.includes(bloodType)) {
-                console.log(yield donorTypeArray.indexOf(bloodType));
-                console.log(yield recipientTypeArray.indexOf(bloodType));
+                recipient_id_array.push(yield recipientTypeArray.indexOf(bloodType)+1);
+            }
+        }
+        for (let bloodType of recipientTypeArray) {
+            if (donorTypeArray.includes(bloodType)) {
+                donor_id_array.push(yield donorTypeArray.indexOf(bloodType)+1);
             }
         }
 
-        //console.log("This is your response data", response.data);
+        let donorAndRecipientIDs = {
+            donors: donor_id_array,
+            recipients: recipient_id_array
+        }
+
+        axios.post('/matches', donorAndRecipientIDs);
 
     } catch (error) {
         console.log('Matcher Failed', error);
