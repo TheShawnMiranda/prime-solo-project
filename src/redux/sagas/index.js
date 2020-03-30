@@ -8,6 +8,8 @@ import deleteFileSaga from './deleteFileSaga';
 import matcherSaga from './matcherSaga';
 import matchCatcher from './matchCatcher';
 import editData from './editDataSaga';
+import recipientData from './recipientDataSaga';
+import donorData from './donorDataSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -26,6 +28,8 @@ export default function* rootSaga() {
     deleteFileSaga(),
     matcherSaga(),
     matchCatcher(),
-    editData()
+    editData(),
+    recipientData(),
+    donorData()
   ]);
 }

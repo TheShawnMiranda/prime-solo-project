@@ -16,10 +16,28 @@ router.get('/all', (req, res) => {
         .catch((error) => console.log("Error in Router ", error))
 })
 
+router.get('/recipient', (req, res) => {
+    const queryText = `SELECT recipient_name, recipient_blood_type, recipient_height, recipient_weight, recipient_age, recipient_organ FROM data
+    JOIN matches ON matches.recipient_id = data.id
+    WHERE matches.id = ${req.user.id}`;
+    pool.query(queryText)
+        .then((result) => res.send(result.rows))
+        .catch((error) => console.log("Error in Router ", error))
+})
+
+router.get('/donor', (req, res) => {
+    const queryText = `SELECT donor_name, donor_blood_type, donor_height, donor_weight, donor_age, donor_organ FROM data
+    JOIN matches ON matches.donor_id = data.id
+    WHERE matches.id = ${req.user.id}`;
+    pool.query(queryText)
+        .then((result) => res.send(result.rows))
+        .catch((error) => console.log("Error in Router ", error))
+})
+
 router.post('/', (req, res) => {
     const queryText = `INSERT INTO "data" ("donor_name", "donor_blood_type", "donor_height", "donor_weight", "donor_age", "donor_organ", "zip",
-                        "recipient_name", "recipient_blood_type", "recipient_height", "recipient_weight", "recipient_age", "recipient_organ", "matched")
-                        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14);`
+    "recipient_name", "recipient_blood_type", "recipient_height", "recipient_weight", "recipient_age", "recipient_organ", "matched")
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14);`
     const values = [req.body.donor_name, req.body.donor_blood_type, req.body.donor_height, req.body.donor_weight, req.body.donor_age, req.body.donor_organ, req.body.zip, req.body.recipient_name,
     req.body.recipient_blood_type, req.body.recipient_height, req.body.recipient_weight, req.body.recipient_age, req.body.recipient_organ, false]
     pool.query(queryText, values)
